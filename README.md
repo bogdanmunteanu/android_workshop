@@ -104,8 +104,3 @@ For more information, check out the [Guide to Android app modularization](https:
 
 Pokedex using the [PokeAPI](https://pokeapi.co/) for constructing RESTful API.<br>
 PokeAPI provides a RESTful API interface to highly detailed objects built from thousands of lines of data related to Pokémon.
-
-## Find this repository useful? :heart:
-Support it by joining __[stargazers](https://github.com/skydoves/pokedex-compose/stargazers)__ for this repository. :star: <br>
-Also, __[follow me](https://github.com/skydoves)__ on GitHub for my next creations! 🤩
-
