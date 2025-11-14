@@ -1,7 +1,7 @@
+
 plugins {
   id("skydoves.pokedex.android.library")
   id("skydoves.pokedex.android.library.compose")
-  id("skydoves.pokedex.spotless")
 }
 
 android {

@@ -17,7 +17,6 @@
 plugins {
   id("skydoves.pokedex.android.library")
   id("skydoves.pokedex.android.hilt")
-  id("skydoves.pokedex.spotless")
 }
 
 android {

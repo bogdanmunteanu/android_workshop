@@ -6,9 +6,7 @@ plugins {
   id("skydoves.pokedex.android.application")
   id("skydoves.pokedex.android.application.compose")
   id("skydoves.pokedex.android.hilt")
-  id("skydoves.pokedex.spotless")
   alias(libs.plugins.kotlin.parcelize)
-  alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -100,7 +98,6 @@ dependencies {
 
   // baseline profile
   implementation(libs.profileinstaller)
-  baselineProfile(project(":baselineprofile"))
 
   // unit test
   testImplementation(libs.junit)
