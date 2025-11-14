@@ -1,3 +1,7 @@
+# android_workshop
+Repository for Android workshop
+12.11.2025
+
 <h1 align="center">Pokedex Compose</h1>
 
 <p align="center">
