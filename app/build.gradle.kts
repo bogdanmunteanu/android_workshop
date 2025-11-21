@@ -1,113 +1,51 @@
-import com.skydoves.pokedex.compose.Configuration
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
-  id("skydoves.pokedex.android.application")
-  id("skydoves.pokedex.android.application.compose")
-  id("skydoves.pokedex.android.hilt")
-  alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-  namespace = "com.skydoves.pokedex.compose"
+    namespace = "com.db.training.pokedex"
+    compileSdk = 36
 
-  defaultConfig {
-    applicationId = "com.skydoves.pokedex.compose"
-    versionCode = Configuration.versionCode
-    versionName = Configuration.versionName
-    testInstrumentationRunner = "com.skydoves.pokedex.compose.AppTestRunner"
-  }
-
-  signingConfigs {
-    val properties = Properties()
-    val localPropertyFile = project.rootProject.file("local.properties")
-    if (localPropertyFile.canRead()) {
-      properties.load(FileInputStream("$rootDir/local.properties"))
+    defaultConfig {
+        applicationId = "com.db.training.pokedex"
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
     }
-    create("release") {
-      storeFile = file(properties["RELEASE_KEYSTORE_PATH"] ?: "../keystores/pokedex.jks")
-      keyAlias = properties["RELEASE_KEY_ALIAS"].toString()
-      keyPassword = properties["RELEASE_KEY_PASSWORD"].toString()
-      storePassword = properties["RELEASE_KEYSTORE_PASSWORD"].toString()
-    }
-  }
 
-  buildTypes {
-    release {
-      isMinifyEnabled = true
-      isShrinkResources = true
-      proguardFiles("proguard-rules.pro",)
-      signingConfig = signingConfigs.getByName("release")
-
-      packaging {
-        resources {
-          excludes += listOf(
-            "DebugProbesKt.bin",
-            "kotlin-tooling-metadata.json",
-            "kotlin/**",
-          )
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
-      }
     }
-  }
-
-  buildFeatures {
-    buildConfig = true
-  }
-
-  hilt {
-    enableAggregatingTask = true
-  }
-
-  testOptions.unitTests {
-    isIncludeAndroidResources = true
-    isReturnDefaultValues = true
-  }
-
-  kotlinOptions {
-    freeCompilerArgs += listOf(
-      "-Xno-param-assertions",
-      "-Xno-call-assertions",
-      "-Xno-receiver-assertions"
-    )
-  }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
-  // features
-  implementation(projects.feature.home)
-  implementation(projects.feature.details)
 
-  // cores
-  implementation(projects.core.model)
-  implementation(projects.core.designsystem)
-  implementation(projects.core.navigation)
-
-  // compose
-  implementation(libs.androidx.activity.compose)
-  implementation(libs.androidx.compose.ui)
-  implementation(libs.androidx.compose.runtime)
-  implementation(libs.androidx.compose.foundation)
-
-  // di
-  implementation(libs.hilt.android)
-  ksp(libs.hilt.compiler)
-  androidTestImplementation(libs.hilt.testing)
-  kspAndroidTest(libs.hilt.compiler)
-
-  // baseline profile
-  implementation(libs.profileinstaller)
-
-  // unit test
-  testImplementation(libs.junit)
-  testImplementation(libs.turbine)
-  testImplementation(libs.androidx.test.core)
-  testImplementation(libs.mockito.core)
-  testImplementation(libs.mockito.kotlin)
-  testImplementation(libs.kotlinx.coroutines.test)
-  androidTestImplementation(libs.truth)
-  androidTestImplementation(libs.androidx.junit)
-  androidTestImplementation(libs.androidx.espresso)
-//  androidTestImplementation(libs.android.test.runner)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
 }
