@@ -1,7 +1,6 @@
 package com.db.training.pokedex.ui.components
 
 
-import android.widget.Space
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,12 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.db.training.pokedex.domain.Pokemon
 
 /**
  * Copyright © 2025. All rights reserved.
  **/
 @Composable
-fun PokemonDetails(onBackPressed: () -> Unit) {
+fun PokemonDetails(pokemon: Pokemon, onBackPressed: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         Icon(
             modifier = Modifier
@@ -32,7 +32,7 @@ fun PokemonDetails(onBackPressed: () -> Unit) {
         )
 
         Spacer(modifier = Modifier.height(24.dp))
-        Text("Press X to go back", color = Color.Black)
+        Text("This is a page for ${pokemon.name}", color = Color.Black)
     }
 
 }
