@@ -1,4 +1,4 @@
-package com.db.training.pokedex.ui.screens
+package com.db.training.pokedex.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,9 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.db.training.pokedex.R
 import com.db.training.pokedex.domain.Pokemon
-
 import com.db.training.pokedex.ui.theme.PokedexTheme
-import kotlin.collections.forEach
 
 /**
  * Copyright © 2025. All rights reserved.
@@ -43,13 +41,13 @@ fun PokemonLazyList(pokemons: List<Pokemon>) {
 
 //scrollable grid
 @Composable
-fun PokemonLazyGrid(pokemons: List<Pokemon>) {
+fun PokemonLazyGrid(pokemons: List<Pokemon>, onPokemonClicked: (Pokemon) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(count = 2),
         contentPadding = PaddingValues(6.dp),
     ) {
         items(pokemons) {
-            PokemonItem(it)
+            PokemonItem(it, onPokemonClicked = { onPokemonClicked(it) })
         }
     }
 }
@@ -69,6 +67,6 @@ fun PokemonLazyListPreview() {
 
         )
     PokedexTheme {
-        PokemonLazyGrid(pokemonMockList)
+        PokemonLazyGrid(pokemonMockList, {})
     }
 }

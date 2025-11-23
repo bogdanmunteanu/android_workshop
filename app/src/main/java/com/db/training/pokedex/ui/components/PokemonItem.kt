@@ -1,9 +1,10 @@
-package com.db.training.pokedex.ui.screens
+package com.db.training.pokedex.ui.components
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -40,7 +41,7 @@ import kotlinx.coroutines.withContext
  * Copyright © 2025. All rights reserved.
  **/
 @Composable
-fun PokemonItem(pokemon: Pokemon) {
+fun PokemonItem(pokemon: Pokemon, onPokemonClicked: () -> Unit = {} ) {
     val context = LocalContext.current
     var dominantColor by remember { mutableStateOf(Color.LightGray) }
 
@@ -51,7 +52,8 @@ fun PokemonItem(pokemon: Pokemon) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable { onPokemonClicked() },
         shape = RoundedCornerShape(size = 12.dp),
         colors = CardDefaults.cardColors(
             containerColor = dominantColor,
