@@ -1,4 +1,4 @@
-package com.db.training.pokedex
+package com.db.training.pokedex.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,18 +13,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.db.training.pokedex.ui.theme.PokedexTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            PokedexTheme {
+            _root_ide_package_.com.db.training.pokedex.ui.theme.PokedexTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Box(Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize()) {
+                    Box(
+                        Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
+                    ) {
                         Greeting(
                             name = "world",
                             modifier = Modifier.align(Alignment.Center)
@@ -47,7 +48,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    PokedexTheme {
+    _root_ide_package_.com.db.training.pokedex.ui.theme.PokedexTheme {
         Greeting("Hello world")
     }
 }
